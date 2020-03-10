@@ -6,15 +6,15 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
-    set :session_secret, ENV.fetch('SESSION_SECRET') { SecureRandom.hex(64) }
+    set :session_secret, ENV['SESSION_SECRET'] { SecureRandom.hex(64) }
   end
 
   get "/" do
-    session[:whatever] = 'blue'
-    erb :welcome
+    session[:user_id] = user.id
+    erb "users/welcome"
   end
 
-  get '/color'
+  get '/color' do
     session[:whatever]
   end
 

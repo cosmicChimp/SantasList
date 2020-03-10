@@ -5,6 +5,10 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 run ApplicationController
+use LoginsController
 use LettersController
 use WishlistsController
 use UsersController
+
+
+
