@@ -1,21 +1,24 @@
 require './config/environment'
+require "rack-flash"
 
 class ApplicationController < Sinatra::Base
+  register Sinatra::ActiveRecordExtension
+  set :views, Proc.new { File.join(root, "../views/") }
+  enable :sessions
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    use Rack::Flash
     enable :sessions
     set :session_secret, ENV['SESSION_SECRET'] { SecureRandom.hex(64) }
   end
 
   get "/" do
-    session[:user_id] = user.id
-    erb "users/welcome"
+    erb :home
   end
 
-  get '/color' do
-    session[:whatever]
-  end
+  
 
 end

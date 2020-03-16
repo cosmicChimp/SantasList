@@ -14,16 +14,24 @@
 ActiveRecord::Schema.define(version: 20200310174400) do
 
   create_table "letters", force: :cascade do |t|
+    t.date     "date"
+    t.string   "subject"
+    t.string   "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "wishlists", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
