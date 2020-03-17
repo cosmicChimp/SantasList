@@ -7,15 +7,21 @@ class LoginsController < ApplicationController
 
   post '/signups' do
     @user = User.new(name: params[:name], email: params[:email], password: params[:password])
-    @user.save
-    binding.pry
-    session[:user_id] = @user.id
-    redirect to "/users/home"
+    if @user.valid?
+      @user.save
+      session[:user_id] = @user.id
+      redirect to "/users/home"
+    else
+      flash[:message] = "Missing Signup Field, Please Try Again"      
+      redirect to "/signups/signup"
+    end
   end
 
   get '/logins/login' do
     if Helpers.is_logged_in?(session)
       redirect to '/users'
+    else 
+      flash[:login_error] = "Login Info Incorrect.  Please try again."
     end
     erb :'/logins/login'
   end
@@ -45,7 +51,7 @@ class LoginsController < ApplicationController
       session[:user_id] = @user.id
       redirect to '/users'
     else
-      # flash[:login_error] = "Login Info Incorrect.  Please try again."
+      
       erb :'/logins/login'
     end
   end
@@ -53,7 +59,7 @@ class LoginsController < ApplicationController
     get '/logout' do
       if Helpers.is_logged_in?(session)
         session.clear
-        redirect to '/logins'
+        redirect to '/logins/login'
       else
         redirect to '/'
       end

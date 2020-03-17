@@ -13,12 +13,12 @@ class WishlistsController < ApplicationController
   get '/wishlists/index' do
     erb :'/wishlists/index'
   end
-end
-  # # GET: /wishlists/new
-  # get "/wishlists/new" do
-  #   erb :"/wishlists/new.html"
-  # end
 
+  # GET: /wishlists/new
+  get "/wishlists/new" do
+    erb :"/wishlists/new"
+  end
+end
   # # POST: /wishlists
   # post "/wishlists" do
   #   redirect "/wishlists"
