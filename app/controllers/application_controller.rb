@@ -1,12 +1,13 @@
 require './config/environment'
 require "rack-flash"
 require 'console'
+require 'dotenv'
 
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   set :views, Proc.new { File.join(root, "../views/") }
-  enable :sessions
-  use Rack::Flash
+  # enable :sessions
+  # use Rack::Flash
 
   configure do
     set :public_folder, 'public'

@@ -1,1 +1,13 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Make a Wish for Santa!</h1>
+<font color="red">
+  <% if flash.has?(:message) %>
+    <%= flash[:message] %>
+  <% end %>
+</font>
+<br>
+<form action="/wishlists/<%= @user.id %>" method="POST">
+    <h4><label for="wish_item"> Make a Wish!</label></h4>
+    <br>
+    <p>My wish for today is: <input type="text" name="content"></p> 
+    <button type="submit" id="submit">Make my wish come true!</button>
+</form>

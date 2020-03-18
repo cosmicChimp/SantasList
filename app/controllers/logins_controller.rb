@@ -10,7 +10,7 @@ class LoginsController < ApplicationController
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
-      redirect to "/users/home"
+      redirect to "/users/:id"
     else
       flash[:message] = "Missing Signup Field, Please Try Again"      
       redirect to "/signups/signup"
@@ -19,7 +19,7 @@ class LoginsController < ApplicationController
 
   get '/logins/login' do
     if Helpers.is_logged_in?(session)
-      redirect to '/users'
+      redirect to "/users/:id"
     else 
       flash[:login_error] = "Login Info Incorrect.  Please try again."
     end
@@ -32,7 +32,7 @@ class LoginsController < ApplicationController
     # raise params.inspect
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect to "/users/home"
+      redirect to "/users/:id"
     end
     erb :"/logins/login"
   end
@@ -44,19 +44,9 @@ class LoginsController < ApplicationController
     redirect to "/logins"
   end
 
-  post '/logins' do
-    @user = User.find_by(email: params["email"])
-
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect to '/users'
-    else
-      
-      erb :'/logins/login'
-    end
-  end
   
     get '/logout' do
+      @user = User.find_by_id(params[:id])
       if Helpers.is_logged_in?(session)
         session.clear
         redirect to '/logins/login'
@@ -66,31 +56,5 @@ class LoginsController < ApplicationController
     end
 
 end
-
-  # POST: /logins
-  # post "/logins" do
-  #   redirect "/logins"
-  # end
-
-  # # GET: /logins/5
-  # get "/logins/:id" do
-  #   erb :"/logins/show.html"
-  # end
-
-  # # GET: /logins/5/edit
-  # get "/logins/:id/edit" do
-  #   erb :"/logins/edit.html"
-  # end
-
-  # # PATCH: /logins/5
-  # patch "/logins/:id" do
-  #   redirect "/logins/:id"
-  # end
-
-  # # DELETE: /logins/5/delete
-  # delete "/logins/:id/delete" do
-  #   redirect "/logins"
-  # end
-# end
 
   

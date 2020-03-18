@@ -1,4 +1,11 @@
-<h1>This is the Model's index page.</h1>
+<h1>Your Wishlist!</h1>
 
-<%# <form action="/wishlists/new" method="POST">
-    <p>My Wish: <input id</p> %>
+<%@wishlists.each do |x|%>
+
+<p><input type="checkbox" name="user[x_ids][]" id="<%= x.id %>" value="<%= x.id %>"> <%= x.content %></p>
+
+<%end%>
+
+<form action="/wishlists/<%= @user.id %>/new" method="GET">
+    <p><button type="submit" id="submit">Make My Next Wish!</button></p>
+</form>

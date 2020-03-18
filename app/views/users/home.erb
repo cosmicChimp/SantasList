@@ -1,4 +1,4 @@
 Hello, <%= @current_user.name%>
 <br>
-<a href='/wishlists'>Wishlists</a>
-<a href='/logout'>Log Out</a>
+<a href='/wishlists/<%= @current_user.id %>/index'>Wishlists</a>
+<a href='/logout/<%= @user.id %>'>Log Out</a>
