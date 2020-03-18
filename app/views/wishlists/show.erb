@@ -1,1 +1,7 @@
 <h1>This is the show page for an individual instance of your model.</h1>
+<%= @wish.content %>
+
+<form action="/wishlists/<%= @wish.id %>/edit" method="PATCH">
+  <input type="submit" value="Edit Wish"/>
+</form>
+<br>

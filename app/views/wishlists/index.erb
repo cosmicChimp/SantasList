@@ -1,14 +1,18 @@
 <h1>Your Wishlist!</h1>
 
-<%@wishlists.each do |x|%>
 
-<p><input type="checkbox" name="user[x_ids][]" id="<%= x.id %>" value="<%= x.id %>"> <%= x.content %></p>
-
-<%end%>
+<select id="select_wish">
+    <option value="default" selected>Select wish</option>
+        <%@wishlists.each do |x| %>
+        <option value="<%=x.id%>"><%=x.content%></option>
+        <%end%>
+</select>
+    
 
 <form action="/wishlists/<%= @user.id %>/new" method="GET">
     <p><button type="submit" id="submit">Make My Next Wish!</button></p>
 </form>
+<button onclick = "selectWish()">Edit wish</button>
 <form action="/users/:id/home">
     <button type="submit">Home</button>
 </form>
@@ -16,3 +20,12 @@
     <button type="submit">Log Out</button>
 </form>
 
+
+<script>
+
+    const selectWish = () => {
+        let list = document.getElementById("select_wish").value
+        window.location.replace(`http://localhost:9393/wishlists/${list}/edit`)
+        console.log(list)
+    }
+ </script>

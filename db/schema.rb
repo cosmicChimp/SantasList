@@ -36,6 +36,4 @@ ActiveRecord::Schema.define(version: 20200310174400) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "wishlists", ["user_id"], name: "index_wishlists_on_user_id"
-
 end
