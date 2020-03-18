@@ -1,4 +1,10 @@
-Hello, <%= @current_user.name%>
+<p><b>Hello, <%= @current_user.name%></b></p>
 <br>
-<a href='/wishlists/<%= @current_user.id %>/index'>Wishlists</a>
-<a href='/logout/<%= @user.id %>'>Log Out</a>
+
+<form action="/wishlists/<%= @current_user.id %>/index">
+    <button type="submit">Wishlist!</button>
+</form>
+<%# <a href='/logout'>Log Out</a> %>
+<form action="/logout">
+    <button type="submit">Log Out</button>
+</form>

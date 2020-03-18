@@ -41,9 +41,10 @@ class WishlistsController < ApplicationController
     if !Helpers.is_logged_in?(session)
       redirect to "/logins/login"
     end
+    @current_user = User.find(session[:user_id])
     @wish = Wishlist.find(params[:id])
     if @current_user == Helpers.current_user(session)
-    erb :"/users/edit"
+    erb :"/wishlists/edit"
     else
       redirect to "/logins/login"
     end

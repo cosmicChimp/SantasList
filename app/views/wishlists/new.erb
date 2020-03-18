@@ -11,3 +11,9 @@
     <p>My wish for today is: <input type="text" name="content"></p> 
     <button type="submit" id="submit">Make my wish come true!</button>
 </form>
+<form action="/wishlists/<%= @user.id %>/index">
+    <button type="submit">Go Back to Wishlist!</button>
+</form>
+<form action="/users/:id/home">
+    <button type="submit">Home</button>
+</form>

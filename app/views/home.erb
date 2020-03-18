@@ -6,10 +6,18 @@
 <body>
   <h1>Welcome to your Santa's List</h1>
   <h4>Please log in to your Santa's List to continue wishing!</h4>
-
+  <br>
   <h4>If you have not created a Santa's List yet, no worries just follow the sign up link below to get started!! </h4>
-  <a href='/logins/login'>Log In</a>
-  <a href="/signups/signup">Sign Up</a>
+  <%# <a href='/logins/login'>Log In</a> %>
+  <br>
+  <form action="/logins/login">
+         <p><button type="submit">Log In</button></p>
+  </form>
+  <%# <a href="/signups/signup">Sign Up</a> %>
+  <form action="/signups/signup">
+         <p><button type="submit">Sign up</button></p>
+  </form>
+
 </body>
 
 </html>
