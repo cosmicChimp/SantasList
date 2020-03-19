@@ -28,7 +28,6 @@ class WishlistsController < ApplicationController
     end
   end
 
-
   get '/wishlists/:id/index' do
     if Helpers.is_logged_in?(session)
       @user = Helpers.current_user(session)
@@ -75,17 +74,12 @@ class WishlistsController < ApplicationController
     end
   end
 
-  delete '/wishlists/:id/delete' do
-    @current_user = User.find(params[:id])
+  delete '/wishlists/:id/delete' do    
     if Helpers.is_logged_in?(session)
-      @wish = Wishlist.find(params[:id])
-      if @current_user == Helpers.current_user(session)
-        @wish = Wishlist.find_by_id(params[:id])
-        @wish.delete
-        redirect to "/wishlists/#{@current_user.id}/index"
-      else
-        redirect to "/wishlists/#{@current_user.id}/index"
-      end
+      @current_user = User.find_by(id: params[:id])
+      @wish = Wishlist.find_by(id: params[:id])
+      @wish.delete
+      redirect to "/wishlists/:id/index"
     else
       redirect to '/logins/login'
     end

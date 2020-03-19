@@ -1,22 +1,61 @@
-<h1>Change your Wish Here!</h1>
-<font color="red">
-  <% if flash.has?(:message) %>
-    <%= flash[:message] %>
-  <% end %>
-</font>
-<br>
-<form action="/wishlists/<%= @wish.id %>/edit" method="POST">
-<input id="hidden" type="hidden" name="_method" value="PATCH" >
-    <h3><label for="wish_item"> Change Your Wish!</label></h3>
-    <br>
-    <p>My Current Wish is: <%= @wish.content %>
-    <p>I Want to Change My Wish to: <input type="text" name="content"></p> 
-    <button type="submit" id="submit">Change My Wish!</button>
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+        </title> 
+      <link href='https://fonts.googleapis.com/css?family=Alfa+Slab+One|Cinzel|Lakki+Reddy|Londrina+Shadow|Righteous|Rye|Ultra|Fredericka+the+Great|' rel='stylesheet' type='text/css'>
+    </head>
+    <style>
 
-<form action="/wishlists/<%= @current_user.id %>/index">
-    <button type="submit">Wishlist!</button>
-</form>
-<form action="/users/:id/home">
-    <button type="submit">Home</button>
-</form>
+    button {
+       display: inline;
+       border-radius: 100px;
+       font-family: 'Cinzel', serif;
+    }
+
+    .home {
+        float: left;
+    }
+
+    .wishlist {
+        float: right;
+    }
+
+    
+    
+    </style>
+    <body>
+        <h1>Change your Wish Here!</h1>
+        <font color="red">
+          <% if flash.has?(:message) %>
+            <%= flash[:message] %>
+          <% end %>
+        </font>
+        <br>
+        <form action="/wishlists/<%= @wish.id %>/edit" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="PATCH" >
+            <h3><label for="wish_item"> Change Your Wish!</label></h3>
+            <br>
+            <p>My Current Wish is: <%= @wish.content %></p>
+            I Want to Change My Wish to: <input type="text" name="content">
+            <button type="submit" id="submit">Change My Wish!</button>
+        </form>
+        <br>
+        <div class="remove">
+            <form action="/wishlists/<%= @wish.id %>/delete" method="post">
+              <input id="hidden" type="hidden" name="_method" value="delete"/>
+              <button type="submit" id="submit">Remove Wish</button>
+            </form>	
+        </div>
+        <div class="wishlist">
+            <form action="/wishlists/<%= @current_user.id %>/index">
+                <button type="submit">Wishlist!</button>
+            </form>
+        </div>
+        <div class="home">
+            <form action="/users/:id/home">
+                <button type="submit">Home</button>
+            </form>
+        </div>
+    </body>
+</html>        
