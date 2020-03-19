@@ -1,31 +1,74 @@
-<h1>Your Wishlist!</h1>
+<!DOCTYPE html>
+<html>        
+    <head>
+        <title>
+        </title>
+      <link href='https://fonts.googleapis.com/css?family=Alfa+Slab+One|Cinzel|Lakki+Reddy|Londrina+Shadow|Righteous|Rye|Ultra|Fredericka+the+Great|' rel='stylesheet' type='text/css'>
+    </head>
+    <style>
 
-
-<select id="select_wish">
-    <option value="default" selected>Select wish</option>
-        <%@wishlists.each do |x| %>
-        <option value="<%=x.id%>"><%=x.content%></option>
-        <%end%>
-</select>
-    
-
-<form action="/wishlists/<%= @user.id %>/new" method="GET">
-    <p><button type="submit" id="submit">Make My Next Wish!</button></p>
-</form>
-<button onclick = "selectWish()">Edit wish</button>
-<form action="/users/:id/home">
-    <button type="submit">Home</button>
-</form>
-<form action="/logout">
-    <button type="submit">Log Out</button>
-</form>
-
-
-<script>
-
-    const selectWish = () => {
-        let list = document.getElementById("select_wish").value
-        window.location.replace(`http://localhost:9393/wishlists/${list}/edit`)
-        console.log(list)
+    button {
+       display: inline;
+       border-radius: 80px;
+       font-family: 'Cinzel', serif;
     }
- </script>
+
+    .home_button {
+        float: left;
+    }
+
+    .logout_button {
+        float: right;
+    }
+    
+    </style>
+    <body>
+    
+        <h1>Your Wishlist!</h1>
+
+        
+        <%@wishlists.each do |x| %>  
+        <ul>          
+            <li><%=x.content%></li>  
+        </ul>              
+        <%end%>      
+
+        <br>
+
+        <form action="/wishlists/<%= @user.id %>/new" method="GET">
+            <p><b><button type="submit" id="submit">Make My Next Wish!</button></b></p>
+        </form>
+
+        <select id="select_wish">
+            <p><option value="default" selected>Select wish</option></p>
+                <%@wishlists.each do |x| %>
+                <option value="<%=x.id%>"><%=x.content%></option>
+                <%end%>
+        </select>        
+
+        
+    
+        <button onclick = "selectWish()">Edit wish</button>    
+
+        <div class="home_button">           
+            <form action="/users/:id/home">
+                <button type="submit">Home</button>
+            </form>
+        </div>
+        <div class="logout_button">
+            <form action="/logout">
+                <button type="submit">Log Out</button>
+            </form>
+        </div>
+
+    <script>
+
+        const selectWish = () => {
+            let list = document.getElementById("select_wish").value
+            window.location.replace(`http://localhost:9393/wishlists/${list}/edit`)
+            console.log(list)
+        }
+    </script>
+
+ </body>
+</html>  

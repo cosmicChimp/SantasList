@@ -53,7 +53,7 @@ class WishlistsController < ApplicationController
       redirect to "/logins/login"
     end
     @current_user = User.find(session[:user_id])
-    @wish = Wishlist.find(params[:id])
+    @wish = Wishlist.find_by(id: params[:id])
     if @current_user == Helpers.current_user(session)
     erb :"/wishlists/edit"
     else
@@ -63,7 +63,7 @@ class WishlistsController < ApplicationController
 
   # PATCH: /wishlists/5
   patch "/wishlists/:id/edit" do
-    @wish = Wishlist.find_by(params[:id])
+    @wish = Wishlist.find_by(id: params[:id])
     @current_user = User.find(session[:user_id])
     # binding.pry
     if params[:content].empty?

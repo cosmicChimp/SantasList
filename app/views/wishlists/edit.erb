@@ -7,9 +7,10 @@
 <br>
 <form action="/wishlists/<%= @wish.id %>/edit" method="POST">
 <input id="hidden" type="hidden" name="_method" value="PATCH" >
-    <h4><label for="wish_item"> Change Your Wish!</label></h4>
+    <h3><label for="wish_item"> Change Your Wish!</label></h3>
     <br>
-    <p>My wish for today is: <input type="text" name="content"></p> 
+    <p>My Current Wish is: <%= @wish.content %>
+    <p>I Want to Change My Wish to: <input type="text" name="content"></p> 
     <button type="submit" id="submit">Change My Wish!</button>
 </form>
 
