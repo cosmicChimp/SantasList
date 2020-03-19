@@ -1,10 +1,58 @@
-<p><b>Hello, <%= @current_user.name%></b></p>
-<br>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+        </title> 
+      <link href='https://fonts.googleapis.com/css?family=Alfa+Slab+One|Cinzel|Lakki+Reddy|Londrina+Shadow|Righteous|Rye|Ultra|Fredericka+the+Great|' rel='stylesheet' type='text/css'>
+    </head>
+    <style>
 
-<form action="/wishlists/<%= @current_user.id %>/index">
-    <button type="submit">Wishlist!</button>
-</form>
-<%# <a href='/logout'>Log Out</a> %>
-<form action="/logout">
-    <button type="submit">Log Out</button>
-</form>
+    button {
+       display: inline;
+       border-radius: 100px;
+       font-family: 'Cinzel', serif;
+    }
+
+    .logout {
+        float: right;
+    }
+
+    .greeting {
+        font-size: 36px;
+    }
+
+    .start {
+        font-size: 26px;
+    }
+
+    .existing {
+        font-size: 14px;
+    }
+
+    
+    
+    </style>
+    <body>
+        <div class="greeting">
+            <p><b>Hello, <%= @current_user.name%>!</b></p>
+        </div>
+        <br>
+        <div class="start">
+            <p>Click below to get started!</p>
+        </div>
+        <div class="existing">
+            <p>If you have already started a Wishlist, click below to continue!</p>
+        </div>
+        <br>
+
+        <form action="/wishlists/<%= @current_user.id %>/index">
+            <button type="submit">Wishlist!</button>
+        </form>
+        <%# <a href='/logout'>Log Out</a> %>
+    <div class="logout">
+        <form action="/logout">
+            <button type="submit">Log Out</button>
+        </form>
+    </div>
+    </body>
+</html>   
