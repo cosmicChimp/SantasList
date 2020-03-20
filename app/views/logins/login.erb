@@ -5,6 +5,10 @@
     </head>
     <style>
 
+        h1 {
+            text-align: center;
+        }
+
         button {
            display: inline;
            border-radius: 100px;
@@ -27,7 +31,10 @@
     </style>
     
     <body>
-        <div>
+
+        <h1>Log In To Santa's List Below!</h1>
+
+        <p><div>
             <form action="/logins" method="POST">
                 <div class="input">
                     <p>Email: <input type="text" name="email"></p>
@@ -41,6 +48,6 @@
                 <form action="/signups" method="POST">
                     <button type="submit" id="submit">Sign Up</button>
                 </form>
-            </div>
+            </div></p>
     </body>
 </html>
