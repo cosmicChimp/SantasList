@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <style>
-    </style>
+    
+        <link href='https://fonts.googleapis.com/css?family=Alfa+Slab+One|Cinzel|Lakki+Reddy|Londrina+Shadow|Righteous|Rye|Ultra|Fredericka+the+Great|' rel='stylesheet' type='text/css'>
+
     </head>
+    <style>
+
+        button {
+            display: inline;
+            border-radius: 100px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .home_button {
+            float: left;
+        }
+
+    </style>
+    
     <body>
         <font color="red">
             <% if flash.has?(:message) %>
@@ -23,9 +38,15 @@
 
             <input id="hidden" type="hidden" name="password">
     
-            <input type="submit" value="Update Info">
+            <button type="submit">Update Info</button>
     
         </form>
+
+        <div class="home_button">           
+            <form action="/users/<%= @current_user.id %>/home" method="POST">
+                <button type="submit">Home</button>
+            </form>
+        </div>
     
     </body>
 </html>
