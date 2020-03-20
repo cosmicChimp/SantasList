@@ -29,6 +29,10 @@
         font-size: 14px;
     }
 
+    .edit_button {
+        float: left;
+    }
+
     
     
     </style>
@@ -53,11 +57,11 @@
         <form action="/logout">
             <button type="submit">Log Out</button>
         </form>
-        <div class="edit_button">           
-            <form action="/users/<%= @current_user.id %>/edit">
-                <button type="submit">Edit Info</button>
-            </form>
-        </div>
+    </div>
+    <div class="edit_button">           
+        <form action="/users/<%= @current_user.id %>/edit">
+            <button type="submit">Edit Info</button>
+        </form>
     </div>
     </body>
 </html>   
