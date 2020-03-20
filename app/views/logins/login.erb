@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href='https://fonts.googleapis.com/css?family=Alfa+Slab+One|Cinzel|Lakki+Reddy|Londrina+Shadow|Righteous|Rye|Ultra|Fredericka+the+Great|' rel='stylesheet' type='text/css'>
+    </head>
     <style>
 
+        button {
+           display: inline;
+           border-radius: 100px;
+           font-family: 'Cinzel', serif;
+        }
+
+        .input {
+            text-align: center;
+        }
+
+        .login_button {
+            float: left;
+        }
+
+        .signup_button {
+            float: right;
+        }
     
 
     </style>
-    </head>
+    
     <body>
         <div>
             <form action="/logins" method="POST">
-                <div>
+                <div class="input">
                     <p>Email: <input type="text" name="email"></p>
                     <p>Password: <input type="password" name="password"></p>
-                    <button type="submit" id="submit">Log In</button>
+                    <div class="login_button">
+                        <button type="submit" id="submit">Log In</button>
+                    </div>
                 </div>
             </form>
-            <form action="/signups" method="POST">
-                <button type="submit" id="submit">Sign Up</button>
-            </form>
-    
+            <div class="signup_button">
+                <form action="/signups" method="POST">
+                    <button type="submit" id="submit">Sign Up</button>
+                </form>
+            </div>
     </body>
 </html>
