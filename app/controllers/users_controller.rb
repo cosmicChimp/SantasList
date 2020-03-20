@@ -60,7 +60,7 @@ class UsersController < ApplicationController
         redirect to "/home"
       end
     else
-      redirect to "/logins/login"
+      redirect to "/home"
     end
   end
 
