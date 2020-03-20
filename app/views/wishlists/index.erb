@@ -51,7 +51,7 @@
         <button onclick = "selectWish()">Edit wish</button>    
 
         <div class="home_button">           
-            <form action="/users/<%= @current_user.id %>/home" method="POST">
+            <form action="/users/<%= @user.id %>/home" method="POST"> 
                 <button type="submit">Home</button>
             </form>
         </div>
