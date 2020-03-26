@@ -1,7 +1,7 @@
 class WishlistsController < ApplicationController
 
   
-  get "/wishlists/:id/new" do
+  get "/wishlists/:user_id/new" do
     if Helpers.is_logged_in?(session)
       @user = Helpers.current_user(session)
       erb :"/wishlists/new"
@@ -46,42 +46,42 @@ class WishlistsController < ApplicationController
     erb :"/wishlists/show"
   end
 
-  # GET: /wishlists/5/edit
   get "/wishlists/:id/edit" do
+    @user = Helpers.current_user(session)
     if !Helpers.is_logged_in?(session)
       redirect to "/logins/login"
     end
-    @current_user = User.find(session[:user_id])
-    @wish = Wishlist.find_by(id: params[:id])
-    if @current_user == Helpers.current_user(session)
-    erb :"/wishlists/edit"
+    @wish = Wishlist.find_by(id: params[:id])    
+    if @wish.user == Helpers.current_user(session)
+        erb :"/wishlists/edit"
     else
       redirect to "/logins/login"
     end
   end
 
-  # PATCH: /wishlists/5
   patch "/wishlists/:id/edit" do
     @wish = Wishlist.find_by(id: params[:id])
-    @current_user = User.find(session[:user_id])
-    # binding.pry
     if params[:content].empty?
       redirect to "/wishlists/#{@wish.id}/edit"
     else    
       @wish.update(content: params[:content])
-    # binding.pry
       redirect to "/wishlists/#{@current_user.id}/index"
     end
   end
 
   delete '/wishlists/:id/delete' do    
+    user = Helpers.current_user(session)
     if Helpers.is_logged_in?(session)
-      @current_user = User.find_by(id: params[:id])
       @wish = Wishlist.find_by(id: params[:id])
-      @wish.delete
-      redirect to "/wishlists/:id/index"
+      if @wish.user == Helpers.current_user(session)
+        @wish = Wishlist.find_by_id(params[:id])
+        @wish.delete
+        redirect to "/wishlists/#{user.id}/index"
+      else
+        redirect to "/wishlists/#{user.id}/index"
+      end
     else
-      redirect to '/logins/login'
+      redirect to "/logins/login"
     end
   end
 

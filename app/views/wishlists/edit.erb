@@ -48,12 +48,12 @@
             </form>	
         </div>
         <div class="wishlist">
-            <form action="/wishlists/<%= @current_user.id %>/index">
+            <form action="/wishlists/<%= @user.id %>/index">
                 <button type="submit">Wishlist!</button>
             </form>
         </div>
         <div class="home">
-            <form action="/users/<%= @current_user.id %>/home" method="POST">
+            <form action="/users/<%= @user.id %>/home" method="POST">
                 <button type="submit">Home</button>
             </form>
         </div>

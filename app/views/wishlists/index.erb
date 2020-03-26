@@ -29,8 +29,9 @@
         
         <%@wishlists.each do |x| %>  
         <ul>          
-            <li><%=x.content%></li>  
-        </ul>              
+            <li><a href="/wishlists/<%=x.id %>"><%=x.content%></a></li>  
+        </ul>      
+                  
         <%end%>      
 
         <br>
@@ -39,13 +40,13 @@
             <p><b><button type="submit" id="submit">Make My Next Wish!</button></b></p>
         </form>
 
-        <select id="select_wish">
+        <!-- <<select id="select_wish">
             <p><option value="default" selected>Select wish</option></p>
                 <%@wishlists.each do |x| %>
                 <option value="<%=x.id%>"><%=x.content%></option>
                 <%end%>
-        </select>        
-
+        </select>    --> 
+        
         
     
         <button onclick = "selectWish()">Edit wish</button>    

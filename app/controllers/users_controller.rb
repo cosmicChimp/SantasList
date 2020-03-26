@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   
   patch "/users/:id/edit" do
-    @current_user = User.find_by(params[:id])
+    @current_user = User.find(session[:user_id])
     if params[:name] && params[:email].empty?
       redirect to "/users/#{@current_user.id}/edit"
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
         params.delete(:password)
     end
       @current_user.update(name: params[:name], email: params[:email])
-      # binding.pry
+      @current_user.save
       redirect "/users/#{@current_user.id}/home"
   end
 

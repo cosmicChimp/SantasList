@@ -30,12 +30,14 @@
         <form method="post" action="/users/<%= @current_user.id %>/edit">
             <input id="hidden" type="hidden" name="_method" value="patch">
 
-            <label for="name">Name: </label>
-            <input id="name" type="text" name="name" value="<%= @current_user.name%>">
+            <p><label for="name">Name: </label>
+            <input id="name" type="text" name="name" value="<%= @current_user.name%>"></p>
     
-            <label for="email">Email: </label>
-            <input id="email" type="email" name="email" value="<%= @current_user.email%>">
+            <p><label for="email">Email: </label>
+            <input id="email" type="email" name="email" value="<%= @current_user.email%>"></p>
 
+            <%# <p><label for="password">Password: </label>
+            <input id="password" type="password" name="password"></p> %>
             <input id="hidden" type="hidden" name="password">
     
             <button type="submit">Update Info</button>
