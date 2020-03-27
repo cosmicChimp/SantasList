@@ -1,5 +1,6 @@
-<h1>This is the show page for an individual instance of your model.</h1>
-<%= @wish.content %>
+<h1>This is your wish for: <em><%= @wish.content %></em> !</h1>
+<h3>What would you like to do with your wish?
+
 
 <form action="/wishlists/<%= @wish.id %>/edit" method="PATCH">
   <input type="submit" value="Edit Wish"/>

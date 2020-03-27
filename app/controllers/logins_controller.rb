@@ -1,7 +1,7 @@
 class LoginsController < ApplicationController
 
   # GET: /logins/new
-  get '/signups/signup' do
+  get '/signup' do
     erb :"/signups/signup"
   end
 
@@ -17,9 +17,9 @@ class LoginsController < ApplicationController
     end
   end
 
-  get '/logins/login' do
-    if Helpers.is_logged_in?(session)
-      redirect to "/users/:id"
+  get '/login' do
+    if is_logged_in?
+      redirect to "/users/#{current_user.id}/home"
     else 
       flash[:login_error] = "Login Info Incorrect.  Please try again."
     end
@@ -32,13 +32,13 @@ class LoginsController < ApplicationController
     # raise params.inspect
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect to "/users/:id"
+      redirect to "/users/#{@user.id}/home"
     end
     erb :"/logins/login"
   end
    
   get "/logins/signup" do
-    if Helpers.is_logged_in?(session)
+    if is_logged_in?
       redirect to "/users/home"
     end
     redirect to "/logins"
@@ -46,10 +46,9 @@ class LoginsController < ApplicationController
 
   
     get '/logout' do
-      @user = User.find_by_id(params[:id])
-      if Helpers.is_logged_in?(session)
+      if is_logged_in?
         session.clear
-        redirect to '/logins/login'
+        redirect to '/login'
       else
         redirect to '/'
       end

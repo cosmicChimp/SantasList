@@ -1,13 +1,9 @@
 class UsersController < ApplicationController
 
-  get "/users/:id" do
-    @current_user = User.find(session[:user_id])
-    redirect to "/users/#{@current_user.id}/home"
-  end
 
   get "/users/:id/home" do
-    if Helpers.is_logged_in?(session)
-      @current_user = User.find(session[:user_id])
+    if is_logged_in?
+      @current_user = current_user
       erb :"/users/home"
     else
       redirect to "/"
@@ -15,17 +11,16 @@ class UsersController < ApplicationController
   end
 
   post "/users/:id/home" do
-    @current_user = User.find(session[:user_id])
-    redirect to "/users/#{@current_user.id}/home"
+    redirect to "/users/#{current_user}.id}/home"
   end
 
   
   get "/users/:id/edit" do
-    if !Helpers.is_logged_in?(session)
+    if !is_logged_in?
       redirect to "/logins/login"
     end
-    @current_user = User.find(session[:user_id])
-    if @current_user == Helpers.current_user(session)
+    @current_user = current_user
+    if @current_user.id == params[:id]
     erb :"/users/edit"
     else
       redirect to "/logins/login"
@@ -34,7 +29,7 @@ class UsersController < ApplicationController
 
   
   patch "/users/:id/edit" do
-    @current_user = User.find(session[:user_id])
+    @current_user = current_user
     if params[:name] && params[:email].empty?
       redirect to "/users/#{@current_user.id}/edit"
     end
@@ -50,18 +45,12 @@ class UsersController < ApplicationController
 
   # DELETE: /users/5/delete
   delete "/users/:id/delete" do
-    if Helpers.is_logged_in?(session)
-      @user = User.find(params[:id])
-      if @user == Helpers.current_user(session)
-        @user = User.find_by_id(params[:id])
-        @user.delete
-        redirect to "/home"
-      else
-        redirect to "/home"
+    if is_logged_in?
+      if current_user.id == params[:id]
+        current_user.delete
       end
-    else
-      redirect to "/home"
     end
+    redirect to "/home"
   end
 
 end

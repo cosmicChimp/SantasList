@@ -32,12 +32,12 @@
           <% end %>
         </font>
         <br>
-        <form action="/wishlists/<%= @wish.id %>/edit" method="POST">
+        <form action="/wishlists/<%= @wish.id %>" method="POST">
         <input id="hidden" type="hidden" name="_method" value="PATCH" >
             <h3><label for="wish_item"> Change Your Wish!</label></h3>
             <br>
             <p>My Current Wish is: <%= @wish.content %></p>
-            I Want to Change My Wish to: <input type="text" name="content">
+            I Want to Change My Wish to: <input type="text" name="content" value=<%=@wish.content%>>
             <button type="submit" id="submit">Change My Wish!</button>
         </form>
         <br>
