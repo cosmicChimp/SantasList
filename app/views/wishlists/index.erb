@@ -62,6 +62,20 @@
             </form>
         </div>
 
+        <form action="/search" method="get">
+            <input type="text" name="search"/><br />   
+            <input type="submit" />
+        </form>
+        <% if !@result.empty? %>
+            <% @result.each_with_index do |cont, index| %>
+                <ol><li><%= "#{index.to_i + 1}. #{cont.content}"%><li></ol>
+            <% end %>
+        <% else %>
+            <p>There is no such data as "<%= @query%>" in our database</p>
+        <% end %>
+
+        
+
     <script>
 
         const selectWish = () => {

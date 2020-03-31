@@ -8,10 +8,7 @@ class WishlistsController < ApplicationController
     else
       redirect to '/logins'
     end
-  end
-
-  # GET: /wishlists/5
- 
+  end 
 
   
   post "/wishlists/:id" do
@@ -88,12 +85,17 @@ class WishlistsController < ApplicationController
     end
   end
 
+  get "/search" do
+    @content = Wishlist.all
+    if params[:search]
+      @query = params[:search]
+      @user = current_user
+      @wishlists = @user.wishlists
+      @result = @content.select { |x| x.content.split(" ").include?(params[:search]) }
+      erb :"wishlists/index"
+    end
+  end
+    
+
 end
   
-
-  # if params[:password].blank?
-    #     params.delete(:password)
-    # end
-
-  
-

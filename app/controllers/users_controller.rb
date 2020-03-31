@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
   end
 
-  post "/users/:id/home" do
+  post "/users/:id" do
     redirect to "/users/#{current_user}.id}/home"
   end
 

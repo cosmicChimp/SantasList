@@ -6,11 +6,12 @@ class LoginsController < ApplicationController
   end
 
   post '/signups' do
+    binding.pry
     @user = User.new(name: params[:name], email: params[:email], password: params[:password])
     if @user.valid?
       @user.save
       session[:user_id] = @user.id
-      redirect to "/users/:id"
+      redirect to "/users/#{@user.id}/home"
     else
       flash[:message] = "Missing Signup Field, Please Try Again"      
       redirect to "/signups/signup"
